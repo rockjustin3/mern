@@ -12,19 +12,22 @@ function App() {
   }, []);
 
   const fetchItems = async () => {
-    const res = await axios.get("http://localhost:5000/items");
+    const res = await axios.get("http://app.gadgetshopee.shop:5000/items");
     setItems(res.data);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (editingId) {
-      await axios.put(`http://localhost:5000/items/${editingId}`, {
+      await axios.put(`http://app.gadgetshopee.shop:5000/items/${editingId}`, {
         name,
         description,
       });
     } else {
-      await axios.post("http://localhost:5000/items", { name, description });
+      await axios.post("http://app.gadgetshopee.shop:5000/items", {
+        name,
+        description,
+      });
     }
     setName("");
     setDescription("");
@@ -33,7 +36,7 @@ function App() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/items/${id}`);
+    await axios.delete(`http://app.gadgetshopee.shop:5000/items/${id}`);
     fetchItems();
   };
 
@@ -46,6 +49,7 @@ function App() {
   return (
     <div className="container">
       <h1>MERN CRUD App (Local Backend)</h1>
+      <h1>Hi Its new</h1>
       <form onSubmit={handleSubmit}>
         <input
           value={name}
